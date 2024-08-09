@@ -9,3 +9,4 @@ export const MainContent = () => {
 		</div>
 	);
 };
+export default MainContent;
