@@ -5,6 +5,9 @@ export const Header = () => {
 		<div>
 			<header
 				style={{
+					backgroundColor: "#FFE5B4",
+					textAlign: "center",
+					color: "red",
 					border: "1px solid gray",
 					padding: "10px",
 					margin: "10px",
