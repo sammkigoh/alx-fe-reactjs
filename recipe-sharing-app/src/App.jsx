@@ -1,16 +1,18 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
 import useRecipeStore from "./components/recipeStore";
 import RecipeList from "./components/RecipeList";
 import AddRecipeForm from "./components/AddRecipeForm";
-import "./App.css";
+import SearchBar from "./components/SearchBar";
 import RecipeDetails from "./components/RecipeDetails";
+import "./App.css";
 
 function App() {
 	return (
 		<Router>
 			<div>
 				<h1>Recipe Sharing App</h1>
+				<SearchBar />
 				<Routes>
 					<Route path="/" element={<RecipeList />} />
 					<Route
