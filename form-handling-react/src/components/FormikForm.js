@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * Yup from 'yup';
 
-function FormikForm() {
+function formikForm() {
 
     const validationSchema = Yup.object().shape({
         username: Yup.string()
@@ -45,4 +45,4 @@ function FormikForm() {
     );
 }
 
-export default FormikForm;
+export default formikForm;
