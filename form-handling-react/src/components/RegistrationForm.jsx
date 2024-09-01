@@ -4,15 +4,20 @@ function RegistrationForm() {
 	const [username, setUsername] = useState("");
 	const [emal, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [errorMessage, setErrorMesage] = useState("");
+	const [errors, setErrors] = useState({});
 
 	const handleSubmit = (event) => {
 		event.preventDefault();
+        let newErrors = {};
 
-		if (!username || !email || !password) {
-			setErrorMesage("All fields are required");
-			return;
-		}
+		if (!username) newErrors.username = 'Username is required';
+        if (!email) newErrors.email = 'Email is required';
+        if (!password) newErrors.password = 'Password is required';
+
+        if (Object.keys(newErrors). length>0) {
+            setErrors(newErrors);
+            return;
+        } 
          // Assume a function to send data to server here
         console.log('Submitted:', { username, email, password });
         setErrorMessage('');
@@ -20,6 +25,7 @@ function RegistrationForm() {
         setUsername('');
         setEmail('');
         setPassword('');
+        setErrors({});
     };
 
 	return (
@@ -33,6 +39,7 @@ function RegistrationForm() {
 					onChange={(e) => setUsername(e.target.value)}
 					required
 				/>
+                {errors.username && <p>{errors.username}</p>}
 			</label>
 			<label>
 				Email:
@@ -42,6 +49,7 @@ function RegistrationForm() {
 					onChange={(e) => setEmail(e.target.value)}
 					required
 				/>
+                {errors.email && <p>{errors.email}</p>}
 			</label>
 			<label>
 				Password:
@@ -51,6 +59,7 @@ function RegistrationForm() {
 					onChange={(e) => setPassword(e.target.value)}
 					required
 				/>
+                {errors.password && <p>{errors.password}</p>}
 			</label>
 
 			<button type="submit">Register</button>
