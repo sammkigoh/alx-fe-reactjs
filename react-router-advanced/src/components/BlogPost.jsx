@@ -3,7 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 
 function BlogPost() {
-	const { postId } = useParams(); // The dynamic segment of the route is named 'postId'
+	const { id } = useParams(); // The dynamic segment of the route is named 'postId'
 
 	return (
 		<div>
