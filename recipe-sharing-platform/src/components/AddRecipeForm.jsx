@@ -41,13 +41,13 @@ const AddRecipeForm = () => {
 		}
 	};
 	return (
-		<div className="container mx-auto p-4">
+		<div className="container mx-auto p-4 md:p-8">
 			<h1 className="text-3xl font-bold text-center mb-8">
 				Add New Recipe
 			</h1>
 			<form
 				onSubmit={handleSubmit}
-				className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg"
+				className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg md:max-w-2xl"
 			>
 				<div className="mb-4">
 					<label className="block text-gray-700 font-bold mb-2">
@@ -55,7 +55,7 @@ const AddRecipeForm = () => {
 					</label>
 					<input
 						type="text"
-						className="w-full p-2 border rounded"
+						className="w-full p-2 border rounded md:p-3"
 						value={title}
 						onChange={(e) => setTitle(e.target.value)}
 					></input>
@@ -71,7 +71,7 @@ const AddRecipeForm = () => {
 					</label>
 					<textarea
 						type="text"
-						className="w-full p-2 border rounded"
+						className="w-full p-2 border rounded md:p-3"
 						value={ingredients}
 						onChange={(e) => setIngredients(e.target.value)}
 					></textarea>
@@ -83,7 +83,7 @@ const AddRecipeForm = () => {
 				</div>
 
 				<div className="mb-4">
-					<label className="block text-gray-700 font-bold mb-2">
+					<label className="block text-gray-700 font-bold mb-2 md:p-3">
 						Preparation Steps
 					</label>
 					<textarea
@@ -98,7 +98,7 @@ const AddRecipeForm = () => {
 				</div>
 				<button
 					type="submit"
-					className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+					className="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 md:py-3"
 				>
 					Submit Recipe
 				</button>
