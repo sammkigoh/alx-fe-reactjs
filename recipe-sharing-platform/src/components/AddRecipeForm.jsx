@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const AddRecipeForm = () => {
 	const [title, setTitle] = useState("");
 	const [ingredients, setIngredients] = useState("");
-	const [instructions, setInstructions] = useState("");
+	const [steps, setSteps] = useState("");
 	const [errors, setErrors] = useState({});
 
 	const handleSubmit = (e) => {
@@ -16,8 +16,7 @@ const AddRecipeForm = () => {
 		if (!title) validationErrors.title = "Recipe title is requred";
 		if (!ingredients)
 			validationErrors.ingredients = "Ingredients are requred";
-		if (!instructions)
-			validationErrors.instructions = "Instructions are requred";
+		if (!steps) validationErrors.steps = "Steps are requred";
 		if (ingredients.split(",").length < 2)
 			validationErrors.ingredients =
 				"Please provide at least two ingredients";
@@ -28,13 +27,13 @@ const AddRecipeForm = () => {
 			console.log({
 				title,
 				ingredients: ingredients.split(","),
-				instructions,
+				steps,
 			});
 
 			//clearing the form after submission
 			setTitle("");
 			setIngredients(",");
-			setInstructions(",");
+			setSteps(",");
 			setErrors({});
 			alert("Recipe submitted successfully!");
 		}
@@ -88,13 +87,11 @@ const AddRecipeForm = () => {
 					<textarea
 						type="text"
 						className="w-full p-2 border rounded"
-						value={instructions}
-						onChange={(e) => setInstructions(e.target.value)}
+						value={steps}
+						onChange={(e) => setSteps(e.target.value)}
 					></textarea>
-					{errors.instructions && (
-						<p className="text-red-500 text-sm">
-							{errors.instructions}
-						</p>
+					{errors.steps && (
+						<p className="text-red-500 text-sm">{errors.steps}</p>
 					)}
 				</div>
 				<button
