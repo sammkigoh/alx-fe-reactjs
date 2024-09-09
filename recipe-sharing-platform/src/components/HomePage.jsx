@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import recipeData from "../data.json";
 
 const HomePage = () => {
@@ -15,23 +16,25 @@ const HomePage = () => {
 			</h1>
 			<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
 				{recipes.map((recipe) => (
-					<div
-						key={recipe.id}
-						className="border rounded-lg shadow-lg p-4 transform transition duration-300 hover:shadow-xl hover:scale-105"
-					>
-						<img
-							src={recipe.image}
-							alt={recipe.title}
-							className="w-full h-48 object-cover mb-4 rounded-t-lg"
-						/>
-						<h2 className="text-xl font-bold mb-2">
-							{recipe.title}
-						</h2>
-						<p className="text-gray-700">{recipe.summary}</p>
-						<button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
-							View Recipe
-						</button>
-					</div>
+					<Link to={`/recipe/${recipe.id}`} key={recipe.id}>
+						<div
+							key={recipe.id}
+							className="border rounded-lg shadow-lg p-4 transform transition duration-300 hover:shadow-xl hover:scale-105"
+						>
+							<img
+								src={recipe.image}
+								alt={recipe.title}
+								className="w-full h-48 object-cover mb-4 rounded-t-lg"
+							/>
+							<h2 className="text-xl font-bold mb-2">
+								{recipe.title}
+							</h2>
+							<p className="text-gray-700">{recipe.summary}</p>
+							<button className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+								View Recipe
+							</button>
+						</div>
+					</Link>
 				))}
 			</div>
 		</div>
