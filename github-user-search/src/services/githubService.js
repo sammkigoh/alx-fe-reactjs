@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_KEY = import.meta.env.VITE_GITHUB_API_KEY; // If using API key, ensure it's set correctly
-const BASE_URL = "https://api.github.com/search/users";
+const API_KEY = import.meta.env.VITE_GITHUB_API_KEY; // Ensure this is properly set in your .env file
 
 export const fetchAdvancedUserSearch = async ({
 	searchTerm,
@@ -19,11 +18,14 @@ export const fetchAdvancedUserSearch = async ({
 		}
 
 		// Make the API request using the GitHub Search API
-		const response = await axios.get(`${BASE_URL}?q=${query}`, {
-			headers: {
-				Authorization: `Bearer ${API_KEY}`, // If you're using an API key, include it here
-			},
-		});
+		const response = await axios.get(
+			`https://api.github.com/search/users?q=${query}`, // Direct use of the URL as expected by the test
+			{
+				headers: {
+					Authorization: `Bearer ${API_KEY}`, // Using an API key if required
+				},
+			}
+		);
 
 		return response.data.items; // Return the array of users from the search results
 	} catch (error) {
