@@ -31,7 +31,7 @@ function App() {
 			{loading && <p className="text-center">Loading...</p>}
 			{error && (
 				<p className="text-center text-red-500">
-					["Looks like we can't find the user"]{" "}
+					["Looks like we cant find the user"]{" "}
 				</p>
 			)}
 			{userData && (
