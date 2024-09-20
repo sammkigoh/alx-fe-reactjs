@@ -1,60 +1,76 @@
 import { useState } from "react";
 import Search from "./components/Search";
-import { fetchUserData } from "./services/githubService";
+import { fetchAdvancedUserSearch } from "./services/githubService";
 import "./App.css";
 
 function App() {
-	const [userData, setUserData] = useState(null);
+	const [users, setUsers] = useState([]);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(false);
 
-	//how we handle the search request
-	const handleSearch = async (username) => {
+	// Handle advanced search
+	const handleSearch = async (searchParams) => {
 		setLoading(true);
 		setError(false);
 
-		const data = await fetchUserData(username); //calling the api service
+		const data = await fetchAdvancedUserSearch(searchParams);
 		if (data) {
-			setUserData(data); //set user data if successfule
+			setUsers(data);
 		} else {
-			setError(true); //setting error state if the user is not found
+			setError(true);
 		}
-		setLoading(false); //set loading state to falsw when done
+
+		setLoading(false);
 	};
+
 	return (
 		<div className="container mx-auto p-4">
 			{/* <h1 className="text-center text-2xl font-bold mb-6">
 				GitHub User Search
 			</h1> */}
 			<Search onSearch={handleSearch} />
-			{/* displaying stuff based on the different states */}
+
+			{/* Display loading, error, or search results */}
 			{loading && <p className="text-center">Loading...</p>}
 			{error && (
 				<p className="text-center text-red-500">
-					["Looks like we cant find the user"]{" "}
+					Error fetching users.
 				</p>
 			)}
-			{userData && (
-				<div className="text-center mt-4">
-					<img
-						src={userData.avatar_url}
-						alt={`${userData.login}'s avatar`}
-						className="w-24 h-24 rounded-full mx-auto mb-4"
-					/>
-					<h2 className="text-xl font-bold">
-						{userData.name || userData.login}
-					</h2>
-					<p className="text-gray-600">
-						{userData.bio || "No bio available."}
-					</p>
-					<a
-						href={userData.html_url}
-						target="_blank"
-						rel="noopener noreferrer"
-						className="text-blue-500 hover:underline mt-2 inline-block"
-					>
-						Visit GitHub Profile
-					</a>
+
+			{users.length > 0 && (
+				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+					{users.map((user) => (
+						<div
+							key={user.id}
+							className="p-4 border rounded-lg shadow-md"
+						>
+							<img
+								src={user.avatar_url}
+								alt={`${user.login}'s avatar`}
+								className="w-24 h-24 rounded-full mx-auto mb-4"
+							/>
+							<h2 className="text-xl font-bold text-center">
+								{user.login}
+							</h2>
+							{user.location && (
+								<p className="text-center text-gray-600">
+									Location: {user.location}
+								</p>
+							)}
+							<p className="text-center text-gray-600">
+								Repositories: {user.public_repos}
+							</p>
+							<a
+								href={user.html_url}
+								target="_blank"
+								rel="noopener noreferrer"
+								className="block text-center text-blue-500 hover:underline mt-2"
+							>
+								View Profile
+							</a>
+						</div>
+					))}
 				</div>
 			)}
 		</div>
