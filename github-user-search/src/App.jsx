@@ -23,9 +23,9 @@ function App() {
 	};
 	return (
 		<div className="container mx-auto p-4">
-			<h1 className="text-center text-2xl font-bold mb-6">
+			{/* <h1 className="text-center text-2xl font-bold mb-6">
 				GitHub User Search
-			</h1>
+			</h1> */}
 			<Search onSearch={handleSearch} />
 			{/* displaying stuff based on the different states */}
 			{loading && <p className="text-center">Loading...</p>}
