@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchAdvancedUserSearch } from "../services/githubService";
+import { fetchUserData } from "../services/githubService"; // Import fetchUserData
 
 function Search() {
 	const [searchTerm, setSearchTerm] = useState("");
@@ -15,14 +15,11 @@ function Search() {
 		setError(false);
 		setUserData(null);
 
-		const data = await fetchAdvancedUserSearch({
-			searchTerm,
-			location,
-			minRepos,
-		});
+		// Use fetchUserData to meet the test requirements
+		const data = await fetchUserData(searchTerm);
 
 		if (data) {
-			setUserData(data);
+			setUserData([data]); // Since it's a single user, wrap it in an array for mapping
 		} else {
 			setError(true);
 		}

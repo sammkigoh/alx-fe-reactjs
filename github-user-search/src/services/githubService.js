@@ -33,3 +33,20 @@ export const fetchAdvancedUserSearch = async ({
 		return null;
 	}
 };
+// simpe user search by username
+export const fetchUserData = async (username) => {
+	try {
+		const response = await axios.get(
+			`https://api.github.com/users/${username}`,
+			{
+				headers: {
+					Authorization: `Bearer ${API_KEY}`,
+				},
+			}
+		);
+		return response.data;
+	} catch (error) {
+		console.error("Error fetching user data:", error);
+		return null;
+	}
+};
