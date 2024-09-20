@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SearchBar from "./components/SearchBar";
-import { fetchUserData } from "./services/GitHubAPI";
+import Search from "./components/Search";
+import { fetchUserData } from "./services/githubService";
 import "./App.css";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
 			<h1 className="text-center text-2xl font-bold mb-6">
 				GitHub User Search
 			</h1>
-			<SearchBar onSearch={handleSearch} />
+			<Search onSearch={handleSearch} />
 			{/* displaying stuff based on the different states */}
 			{loading && <p className="text-center">Loading...</p>}
 			{error && (

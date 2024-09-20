@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function SearchBar({ onSearch }) {
+function Search({ onSearch }) {
 	const [searchTerm, setSearchTerm] = useState(""); //state to hold the input value
 
 	//handling form submission
@@ -31,4 +31,4 @@ function SearchBar({ onSearch }) {
 	);
 }
 
-export default SearchBar;
+export default Search;
